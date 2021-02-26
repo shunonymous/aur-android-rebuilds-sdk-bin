@@ -17,9 +17,10 @@
 #     if (length(archive) > 0) { print archive; archive="" } print $0; } }'
 # Note that dependency on libxtst is from swt.
 
+_pkgname=android-sdk
 pkgname=android-rebuilds-sdk-bin
 pkgver=26.1.1
-pkgrel=1
+pkgrel=2
 pkgdesc='Android SDK binaries provided by Android Rebuils project'
 arch=('x86_64' 'i686')
 url='https://android-rebuilds.beuc.net/'
@@ -49,18 +50,18 @@ package() {
   install -Dm755 "${pkgname}.csh" "${pkgdir}/etc/profile.d/${pkgname}.csh"
   install -Dm644 "${pkgname}.conf" "${pkgdir}/etc/ld.so.conf.d/${pkgname}.conf"
   install -Dm644 "${srcdir}/tools/NOTICE.txt" "${pkgdir}/usr/share/licenses/${pkgname}/license.txt"
-  install -d "${pkgdir}/opt/${pkgname}/platforms"
-  install -d "${pkgdir}/opt/${pkgname}/add-ons"
+  install -d "${pkgdir}/opt/${_pkgname}/platforms"
+  install -d "${pkgdir}/opt/${_pkgname}/add-ons"
 
-  cp -a tools "${pkgdir}/opt/${pkgname}"
+  cp -a tools "${pkgdir}/opt/${_pkgname}"
 
   if [[ $CARCH = i686 ]]; then
     rm -rf "${pkgdir}"/opt/android-sdk/tools/lib/{monitor-,}x86_64
   fi
 
   # Fix broken permissions
-  chmod -R o=g "${pkgdir}/opt/${pkgname}"
-  find "${pkgdir}/opt/${pkgname}" -perm 744 -exec chmod 755 {} +
+  chmod -R o=g "${pkgdir}/opt/${_pkgname}"
+  find "${pkgdir}/opt/${_pkgname}" -perm 744 -exec chmod 755 {} +
 }
 
 # getver: https://developer.android.com/studio/releases/sdk-tools.html

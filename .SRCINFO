@@ -1,7 +1,7 @@
 pkgbase = android-rebuilds-sdk-bin
 	pkgdesc = Android SDK binaries provided by Android Rebuils project
 	pkgver = 26.1.1
-	pkgrel = 1
+	pkgrel = 2
 	url = https://android-rebuilds.beuc.net/
 	install = android-rebuilds-sdk-bin.install
 	arch = x86_64
